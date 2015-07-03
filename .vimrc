@@ -6,6 +6,14 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 
+:set t_Co=256
+:let g:solarized_termcolors=256
+:colorscheme solarized
+:set background=light
+:highlight Normal ctermbg=NONE
+:highlight nonText ctermbg=NONE
+
+
 
 "репозитории на github
 "менеджер модулей
@@ -31,6 +39,9 @@ Bundle 'tobyS/vmustache'
 Bundle 'tobyS/pdv'
 "подсветка twig
 Bundle 'evidens/vim-twig'
+"emmet !!!
+Bundle 'mattn/emmet-vim'
+let g:user_emmet_leader_key='<C-Y>'
 "let g:UltiSnipsExpandTrigger="<C-k>"
 let g:ycm_key_list_select_completion=[]
 let g:ycm_key_list_previous_completion=[]
@@ -41,12 +52,8 @@ let g:ycm_key_list_previous_completion=[]
 "git репозитории (не на github)
 "Bundle 'git://git.wincent.com/command-t.git'
 
-set background=light
-let g:solarized_termcolors=256
-syntax on
-colorscheme solarized
-set t_Co=256
 
+syntax on
 let g:AutoPairsFlyMode = 0
 set cursorline " Подсветка строки, в которой находится в данный момент курсор
 set number
@@ -189,3 +196,8 @@ let g:syntastic_php_checkers = ['php', 'phpcs']
 autocmd FileType php inoremap <C-h> <ESC>:call PhpDocSingle()<CR>i
 autocmd FileType php nnoremap <C-h> :call PhpDocSingle()<CR>
 autocmd FileType php vnoremap <C-h> :call PhpDocRange()<CR>
+"Автоматическое сохранение и сессий
+autocmd VimLeavePre * silent mksession! ~/.vim/lastSession.vim
+"autocmd VimEnter * silent source ~/.vim/lastSession.vim
+"emmet file ident
+autocmd FileType html,css,twig EmmetInstall
