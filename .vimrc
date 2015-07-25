@@ -41,10 +41,18 @@ Bundle 'tobyS/pdv'
 Bundle 'evidens/vim-twig'
 "emmet !!!
 Bundle 'mattn/emmet-vim'
+"Список обявленных функций и переменных
+Bundle 'majutsushi/tagbar'
+"Bundle 'brookhong/DBGPavim'
+Bundle 'joonty/vdebug.git'
+
 let g:user_emmet_leader_key='<C-Y>'
 "let g:UltiSnipsExpandTrigger="<C-k>"
 let g:ycm_key_list_select_completion=[]
 let g:ycm_key_list_previous_completion=[]
+"tagbar
+nmap <F8> :TagbarToggle<CR>
+let g:tagbar_autofocus=1
 "репозитории vim/scripts
 "Bundle 'L9'
 "Bundle 'FuzzyFinder'
@@ -92,13 +100,16 @@ set hidden "hide buffers instead of closing them
 ":nmap <C-e> :e#<CR>
 :nmap <C-PageDown> :bn<CR>
 :nmap <C-PageUp> :bp<CR>
-:map <silent><f2> <esc>:w<Bar>:%s/\s\+$//e<Bar><CR>
-:vmap <silent><f2> <esc>:w<Bar>:%s/\s\+$//e<Bar><CR>
-:imap <silent><f2> <esc>:w<Bar>:%s/\s\+$//e<Bar><CR>
+:map <silent><f10> <esc>:w<Bar>:%s/\s\+$//e<Bar><CR>
+:vmap <silent><f10> <esc>:w<Bar>:%s/\s\+$//e<Bar><CR>
+:imap <silent><f10> <esc>:w<Bar>:%s/\s\+$//e<Bar><CR>
 
 :map <f12> <esc>:NERDTreeToggle<CR>
 :vmap <f12> <esc>:NERDTreeToggle<CR>
 :imap <f12> <esc>:NERDTreeToggle<CR>
+
+"закрывать окно когда выбран файл
+let NERDTreeQuitOnOpen=1
 
 "настройка строки состояния
 " fileformat - формат файла (unix, dos); fileencoding - кодировка файла;
@@ -106,7 +117,7 @@ set hidden "hide buffers instead of closing them
 " курсором;
 " " позиция курсора (строка, символ в строке); процент прочитанного в файле;
 " " кол-во строк в файле;
-set statusline=%F%m%r%h%w\ [FF,FE,TE=%{&fileformat},%{&fileencoding},%{&encoding}\]\ [TYPE=%Y]\ \ [POS=%04l,%04v][%p%%]\ [LEN=%L]
+set statusline=%F%m%r%h%w\ [FF,FE,TE=%{&fileformat},%{&fileencoding},%{&encoding}\]\ [TYPE=%Y]\ [LEN=%L]
 "Включаем отображение вводимой информации в правом углу
 set showcmd
 
@@ -201,3 +212,16 @@ autocmd VimLeavePre * silent mksession! ~/.vim/lastSession.vim
 "autocmd VimEnter * silent source ~/.vim/lastSession.vim
 "emmet file ident
 autocmd FileType html,css,twig EmmetInstall
+imap <expr> <S-TAB> emmet#expandAbbrIntelligent("\<S-TAB>")
+
+
+" When I let Vim write the current buffer I frequently mistype the
+" command ":w" as ":W" - so I have to remap it to correct this typo:
+nmap :W :w
+nmap :Q :q
+
+" Пробел в нормальном режиме перелистывает страницы
+nmap <Space> <PageDown>
+
+" C-d - дублирование текущей строки
+imap <C-d> <esc>yypi
