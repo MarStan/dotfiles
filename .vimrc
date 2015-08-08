@@ -51,7 +51,7 @@ let g:user_emmet_leader_key='<C-Y>'
 let g:ycm_key_list_select_completion=[]
 let g:ycm_key_list_previous_completion=[]
 "tagbar
-nmap <F8> :TagbarToggle<CR>
+nmap <S-F10> :TagbarToggle<CR>
 let g:tagbar_autofocus=1
 "репозитории vim/scripts
 "Bundle 'L9'
@@ -100,13 +100,13 @@ set hidden "hide buffers instead of closing them
 ":nmap <C-e> :e#<CR>
 :nmap <C-PageDown> :bn<CR>
 :nmap <C-PageUp> :bp<CR>
-:map <silent><f10> <esc>:w<Bar>:%s/\s\+$//e<Bar><CR>
-:vmap <silent><f10> <esc>:w<Bar>:%s/\s\+$//e<Bar><CR>
-:imap <silent><f10> <esc>:w<Bar>:%s/\s\+$//e<Bar><CR>
+:map <silent><S-f12> <esc>:w<Bar>:%s/\s\+$//e<Bar><CR>
+:vmap <silent><S-f12> <esc>:w<Bar>:%s/\s\+$//e<Bar><CR>
+:imap <silent><S-f12> <esc>:w<Bar>:%s/\s\+$//e<Bar><CR>
 
-:map <f12> <esc>:NERDTreeToggle<CR>
-:vmap <f12> <esc>:NERDTreeToggle<CR>
-:imap <f12> <esc>:NERDTreeToggle<CR>
+:map <S-f11> <esc>:NERDTreeToggle<CR>
+:vmap <S-f11> <esc>:NERDTreeToggle<CR>
+:imap <S-f11> <esc>:NERDTreeToggle<CR>
 
 "закрывать окно когда выбран файл
 let NERDTreeQuitOnOpen=1
@@ -221,7 +221,10 @@ nmap :W :w
 nmap :Q :q
 
 " Пробел в нормальном режиме перелистывает страницы
-nmap <Space> <PageDown>
+nmap <space> <PageDown>
+" C-space = NUL, все небуквенные сочетания+ctrl == NUL
+nmap <NUL> <PageUp>
 
 " C-d - дублирование текущей строки
 imap <C-d> <esc>yypi
+let g:NERDTreeDirArrows=0
