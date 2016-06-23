@@ -1,230 +1,187 @@
 set nocompatible
+
 filetype off  "обязательно!
-filetype plugin indent on     " обязательно!
+filetype plugin indent on
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-
-:set t_Co=256
-:let g:solarized_termcolors=256
 :colorscheme solarized
-:set background=light
-:highlight Normal ctermbg=NONE
-:highlight nonText ctermbg=NONE
+:set background=dark
 
+Plugin 'VundleVim/Vundle.vim'          " Vundle, the plug-in manager for Vim
+Plugin 'Shougo/vimproc.vim'            " Interactive command execution in Vim.
+Plugin 'tpope/vim-sensible'            " sensible.vim: Defaults everyone can agree on
+Plugin 'tpope/vim-surround'            " surround.vim: quoting/parenthesizing made simple
+Plugin 'scrooloose/syntastic'          " Syntax checking hacks for vim
+Plugin 'scrooloose/nerdtree'           " A tree explorer plugin for vim.
+Plugin 'tpope/vim-commentary'          " commentary.vim: comment stuff out
+Plugin 'tpope/vim-repeat'              " repeat.vim: enable repeating supported plugin maps with '.'
+Plugin 'tpope/vim-unimpaired'          " unimpaired.vim: pairs of handy bracket mappings
+Plugin 'ctrlpvim/ctrlp.vim'            " Active fork of kien/ctrlp.vim—Fuzzy file, buffer, mru, tag, etc finder.
+Plugin 'bling/vim-airline'             " lean & mean status/tabline for vim that's light as air
+Plugin 'majutsushi/tagbar'             " Vim plugin that displays tags in a window, ordered by scope
+Plugin 'godlygeek/tabular'             " Vim script for text filtering and alignment
+Plugin 'mbbill/undotree'               " The ultimate undo history visualizer for VIM
+Plugin '2072/PHP-Indenting-for-VIm'    " The official VIm indent script for PHP
+Plugin 'ervandew/supertab'             " Perform all your vim insert mode completions with Tab
+Plugin 'Valloric/MatchTagAlways'       " A Vim plugin that always highlights the enclosing html/xml tags
+Plugin 'jeetsukumaran/vim-buffergator' " Vim plugin to list, select and switch between buffers.
+Plugin 'nathanaelkane/vim-indent-guides' " Vim plugin to display idention level with the vertical lines
+Plugin 'pangloss/vim-javascript' " JavaScript bundle for vim, this bundle provides syntax and indent plugins.
+Plugin 'heavenshell/vim-jsdoc'
+Plugin 'digitaltoad/vim-jade'
+Plugin 'kovisoft/slimv'                "Superior Lisp Interaction Mode for Vim ('SLIME for Vim')
 
-
-"репозитории на github
-"менеджер модулей
-Bundle 'gmarik/vundle'
-"проверка синтаксиса
-Bundle 'scrooloose/syntastic'
-"автодополнение
-Bundle 'Valloric/YouCompleteMe'
-"автодополнение nodejs
-Bundle 'marijnh/tern_for_vim'
-"дерево каталогов
-Bundle 'scrooloose/nerdtree'
-"автокоментирование
-Bundle 'scrooloose/nerdcommenter'
-"подсветка синтаксиса jade
-Bundle 'digitaltoad/vim-jade'
-"автозакрытие скобок
-Bundle 'jiangmiao/auto-pairs'
-"Snippets
-Bundle 'SirVer/ultisnips'
-"php Documentor
-Bundle 'tobyS/vmustache'
-Bundle 'tobyS/pdv'
-"подсветка twig
-Bundle 'evidens/vim-twig'
-"emmet !!!
-Bundle 'mattn/emmet-vim'
-"Список обявленных функций и переменных
-Bundle 'majutsushi/tagbar'
-"Bundle 'brookhong/DBGPavim'
-Bundle 'joonty/vdebug.git'
-
-let g:user_emmet_leader_key='<C-Y>'
-"let g:UltiSnipsExpandTrigger="<C-k>"
-let g:ycm_key_list_select_completion=[]
-let g:ycm_key_list_previous_completion=[]
-"tagbar
-nmap <S-F10> :TagbarToggle<CR>
-let g:tagbar_autofocus=1
-"репозитории vim/scripts
-"Bundle 'L9'
-"Bundle 'FuzzyFinder'
-
-"git репозитории (не на github)
-"Bundle 'git://git.wincent.com/command-t.git'
-
-
+call vundle#end()
 syntax on
-let g:AutoPairsFlyMode = 0
-set cursorline " Подсветка строки, в которой находится в данный момент курсор
-set number
-set linebreak
-set showbreak=+++
-set textwidth=100
-set showmatch
+filetype on
+filetype plugin indent on
+filetype plugin on
+
+let mapleader=","
+
+" confirm to close buffer
+set confirm
+
+" message language
+:language en_US.utf8
+
+" Sets how many lines of history VIM has to remember
+ set history=500
+
+" Configure backspace so it acts as it should act
+set backspace=eol,start,indent
+
+" enhanced command completion
+set wildmenu
+
 set visualbell
- set colorcolumn=80
 
+set cursorline
+set hidden
+set nofoldenable
+
+set nowrap
+set number
 set hlsearch
-set smartcase
 set ignorecase
-set incsearch
+set smartcase
 
-set autoindent
-set shiftwidth=4
-set smartindent
-set smarttab
-set softtabstop=4
-
-set ruler
-
-"set undolevels=1000
-set backspace=indent,eol,start
-set history=1000 " keep 1000 lines of command line history
+" Turn backup off, since most stuff is in SVN, git et.c anyway...
+set nobackup
+set nowb
 set noswapfile
-set nobackup " don't write backup file"
-set hidden "hide buffers instead of closing them
 
-:set incsearch
-:set ignorecase
-:set smartcase
-:set hlsearch
-:nmap \q :nohlsearch<CR>
-":nmap <C-e> :e#<CR>
-:nmap <C-PageDown> :bn<CR>
-:nmap <C-PageUp> :bp<CR>
-:map <silent><S-f12> <esc>:w<Bar>:%s/\s\+$//e<Bar><CR>
-:vmap <silent><S-f12> <esc>:w<Bar>:%s/\s\+$//e<Bar><CR>
-:imap <silent><S-f12> <esc>:w<Bar>:%s/\s\+$//e<Bar><CR>
+set tabstop=4
+set shiftwidth=4
+set expandtab
 
-:map <S-f11> <esc>:NERDTreeToggle<CR>
-:vmap <S-f11> <esc>:NERDTreeToggle<CR>
-:imap <S-f11> <esc>:NERDTreeToggle<CR>
-
-"закрывать окно когда выбран файл
-let NERDTreeQuitOnOpen=1
-
-"настройка строки состояния
-" fileformat - формат файла (unix, dos); fileencoding - кодировка файла;
-" " encoding - кодировка терминала; TYPE - тип файла, затем коды символа под
-" курсором;
-" " позиция курсора (строка, символ в строке); процент прочитанного в файле;
-" " кол-во строк в файле;
-set statusline=%F%m%r%h%w\ [FF,FE,TE=%{&fileformat},%{&fileencoding},%{&encoding}\]\ [TYPE=%Y]\ [LEN=%L]
-"Включаем отображение вводимой информации в правом углу
-set showcmd
-
-
-"настройки отступов
-set shiftwidth=4 "размер отступов при нажатии >> или <<
-set tabstop=4  "ширина табуляции
-set softtabstop=4  "ширина мягкого таба
-set expandtab  "преобразование табуляции в пробелы
-set cindent  "отступы в стиле СИ
-"set smartindent  "умные автоотступы
-
-set list  "включить подсветку табов и пробелов в конце и начале строки<F2>
-set listchars=tab:·\ ,trail:·  "символы которыми будет осуществлються подсветка
-" включаем подсветку выражения который мы ищем в тексте
-
-"строки фиксированной длины
-menu Textwidth.off :set textwidth=0<CR>
-menu Textwidth.on :set textwidth=79<CR>
-
-set pastetoggle=<f3>
-
-" ============НАСТРОЙКА КЛАВИАТУРЫ И МЫШИ============
-" Настраиваем переключение раскладок клавиатуры по <C-^>
-set keymap=russian-jcukenwin
-" Раскладка по умолчанию - английская
-set iminsert=0
-" аналогично для строки поиска и ввода команд
-set imsearch=0
-
-" Переключение раскладок и индикация выбранной
-" в данный момент раскладки.
-" -->
-    " Переключение раскладок будет производиться по <C-F>
-    "
-    " При английской раскладке статусная строка текущего окна будет синего
-    " цвета, а при русской - зеленого.
-
-    function MyKeyMapHighlight()
-        if &iminsert == 0
-            hi StatusLine ctermfg=Blue
-        else
-            hi StatusLine ctermfg=DarkRed
-        endif
-    endfunction
-
-    " Вызываем функцию, чтобы она установила цвета при запуске Vim'a
-    call MyKeyMapHighlight()
-
-    " При изменении активного окна будет выполняться обновление
-    " индикации текущей раскладки
-    au WinEnter * :call MyKeyMapHighlight()
-
-    cmap <silent> <C-f> <C-^>
-    imap <silent> <C-f> <C-^>X<Esc>:call MyKeyMapHighlight()<CR>a<C-H>
-    nmap <silent> <C-f> a<C-^><Esc>:call MyKeyMapHighlight()<CR>
-    vmap <silent> <C-f> <Esc>a<C-^><Esc>:call MyKeyMapHighlight()<CR>gv
-
-"autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType javascript setlocal omnifunc=tern#Complete
-autocmd BufRead,BufNewFile *.jade setlocal sw=2 ts=2 sts=2
-autocmd BufRead,BufNewFile *.js setlocal sw=2 ts=2 sts=2
-autocmd BufRead,BufNewFile *.jade setlocal ft=jade
-
-"показываем всегда статусную строку
-set laststatus=2
-"по умолчанию черный цвет текста
-hi statusline ctermbg=black
-"меняем цвет текста в зависимости от мода{insert/normal}
-if version >= 700
-  au InsertEnter * hi StatusLine term=reverse ctermbg=white gui=undercurl guisp=Magenta
-  au InsertLeave * hi StatusLine term=reverse ctermbg=black gui=bold,reverse
-endif
-
-"syntastic recommended sttings
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+
+set wrap
+set linebreak
+set nolist
+set showbreak=+++
+autocmd FileType javascript set tabstop=2|set shiftwidth=2
+" bug in vudle wich destraoy highlt in jade files
+autocmd BufNewFile,BufRead *.jade set filetype=jade
+" higlight anything over 80 chars with red
+" highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+" match OverLength /\%81v.*/
+
+:let g:easytags_cmd = '/usr/bin/ctags-exuberant'
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_php_checkers = ['php', 'phpcs']
-
-"PHP documenter script bound to Control-P
-autocmd FileType php inoremap <C-h> <ESC>:call PhpDocSingle()<CR>i
-autocmd FileType php nnoremap <C-h> :call PhpDocSingle()<CR>
-autocmd FileType php vnoremap <C-h> :call PhpDocRange()<CR>
-"Автоматическое сохранение и сессий
-autocmd VimLeavePre * silent mksession! ~/.vim/lastSession.vim
-"autocmd VimEnter * silent source ~/.vim/lastSession.vim
-"emmet file ident
-autocmd FileType html,css,twig EmmetInstall
-imap <expr> <S-TAB> emmet#expandAbbrIntelligent("\<S-TAB>")
 
 
-" When I let Vim write the current buffer I frequently mistype the
-" command ":w" as ":W" - so I have to remap it to correct this typo:
-nmap :W :w
-nmap :Q :q
+let g:easytags_async = 1
+let g:easytags_on_cursorhold = 1
 
-" Пробел в нормальном режиме перелистывает страницы
-nmap <space> <PageDown>
-" C-space = NUL, все небуквенные сочетания+ctrl == NUL
-nmap <NUL> <PageUp>
+let g:buffergator_viewport_split_policy = "B"
+let g:buffergator_sort_regime = "mru"
 
-" C-d - дублирование текущей строки
-imap <C-d> <esc>yypi
-let g:NERDTreeDirArrows=0
+let g:vim_markdown_folding_disabled = 1
+
+
+let g:syntastic_javascript_checkers = ['eslint']
+" let g:syntastic_haml_checkers = ['haml_lint']
+" let g:syntastic_ruby_checkers = ['rubocop', 'mri']
+" let g:syntastic_erlang_checkers = ['syntaxerl']
+
+let g:syntastic_php_checkers=['php', 'phpcs']
+let g:syntastic_php_phpcs_exec='~/.composer/vendor/bin/phpcs'
+let g:syntastic_php_phpcs_args='--standard=PSR2 -n'
+nmap <F8> :TagbarToggle<CR>
+nnoremap <F5> :UndotreeToggle<cr>
+map <C-k> <C-w><Up>
+map <C-j> <C-w><Down>
+map <C-l> <C-w><Right>
+map <C-h> <C-w><Left>
+
+" Toggle paste mode
+nmap <silent> <F4> :set invpaste<CR>:set paste?<CR>
+imap <silent> <F4> <ESC>:set invpaste<CR>:set paste?<CR>
+
+" format the entire file
+nnoremap <leader>fef :normal! gg=G``<CR>
+
+" set text wrapping toggles
+nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
+
+" find merge conflict markers
+nmap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
+
+" upper/lower word
+nmap <leader>u mQviwU`Q
+nmap <leader>l mQviwu`Q
+
+nmap <C-\> :NERDTreeFind<CR>
+nmap <silent> <leader><leader> :NERDTreeToggle<CR>
+let NERDTreeIgnore = ['\.pyc$']
+
+nmap <silent> // :nohlsearch<CR>
+noremap ,hl :set hlsearch! hlsearch?<CR>
+
+" Allows you to enter sudo pass and save the file
+" " when you forgot to open your file with sudo
+cmap w!! %!sudo tee > /dev/null %
+
+" Automatically removing all trailing whitespace
+autocmd BufWritePre * :%s/\s\+$//e
+
+if filereadable(expand("~/.vimrc.after"))
+  source ~/.vimrc.after
+endif
+
+set list  "включить подсветку табов и пробелов в конце и начале строки
+set listchars=tab:·\ ,trail:·  "символы которыми будет осуществлються подсветка
+
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+
+imap <up> <nop>
+imap <down> <nop>
+imap <left> <nop>
+imap <right> <nop>
+
+autocmd FileType c,cpp,php setlocal commentstring=//\ %s
+
+let g:mta_filetypes = {
+    \ 'html' : 1,
+    \ 'xhtml' : 1,
+    \ 'xml' : 1,
+    \ 'jinja' : 1,
+    \ 'php' : 1,
+    \}
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_guide_size = 1
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=DarkBlue
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=DarkGreen
